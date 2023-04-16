@@ -18,13 +18,15 @@ router
   .patch(producutController.updateProduct)
   .delete(producutController.deleteProduct);
 
-router.route("/like").post(authController.protect, likeController.likeProduct);
+router.route("/like/:id").post(authController.protect, likeController.likeProduct);
 router
-  .route("/mostLikedProduct/:id")
+  .route("/mostLikedProduct")
   .get(authController.protect, likeController.mostLikedProduct);
 
 // router.route("/comment").post(likeController.likeProduct);
 // router.route("/giveMostComment/:id").get(likeController.giveMostComment);
+
+router.route("/comment/:id").post(commentController.comment);
 
 router
   .route("/getProductByProductType/:id")

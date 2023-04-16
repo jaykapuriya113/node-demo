@@ -29,10 +29,27 @@ const productSchema = mongoose.Schema({
     type:Date,
     default:Date.now(),
   },
-  imageCover: {
-    type: String,
-    //   required: [true, 'A product must have a cover image'],
-  },
+  // imageCover: {
+  //   type: String,
+  //      required: [true, 'A product must have a cover image'],
+  // },
+});
+productSchema.virtual("likes", {
+  ref: "Like",
+  localField: "_id",
+  foreignField: "product_id",
+});
+
+productSchema.virtual("dislikes", {
+  ref: "DisLike",
+  localField: "_id",
+  foreignField: "product_id",
+});
+
+productSchema.virtual("comments", {
+  ref: "Comment",
+  localField: "_id",
+  foreignField: "product_id",
 });
 const Product = mongoose.model("Product", productSchema);
 module.exports = Product;

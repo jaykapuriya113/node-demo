@@ -1,6 +1,7 @@
+
 const mongoose = require("mongoose");
 
-const likeProductSchema = new mongoose.Schema(
+const commentSchema = new mongoose.Schema(
   {
     user_id: {
       type: mongoose.Schema.Types.ObjectId,
@@ -10,12 +11,14 @@ const likeProductSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Product",
     },
+    comment: {
+      type: String,
+      trim: true,
+    },
   },
   { toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
-const LikeProduct = mongoose.model("LikeProduct", likeProductSchema);
 
-module.exports = LikeProduct;
+const Comment = mongoose.model("Comment", commentSchema);
 
-
-
+module.exports = Comment;
